@@ -6,7 +6,6 @@ library(gtsummary)
 #Importing and viewing data set
 WeldingFumes <- read_excel("Data/WeldingFumes_2005.xlsx")
 View(WeldingFumes)
-warnings()
 
 
 #Create a {gtsummary} table of descriptive statistics about your data (1 pt)
@@ -19,21 +18,48 @@ tbl_summary(
 	#The regression doesn’t have to be of any particular scientific interest,
 	#and you don’t have to interpret it in any particular way
 	#You may use {broom} or {gtsummary} or both
-
+tbl_uvregression(
+	WeldingFumes,
+	y = C_OVER_E,
+	include = c(CONTAMINANT_DESC,
+							STATE),
+							method = lm)
 
 
 #Create a figure (1 pt)
 	#It doesn’t need to look pretty; feel free to adapt some of the examples from
 	#class, which were as simple as hist(data$variable) and as complicated as the
 	#forest plot in the {broom} section
+counts <- table(WeldingFumes$MONTH)
+barplot(counts, main="Samples Collected in 2005 by Month",
+				xlab="Month sample was taken",
+				ylab="Frequency of samples taken")
 
 
 
 #Write and use a function that does something with the data (1 pt)
 	#It could be as simple as, for example, a new function that you write by hand
 	#to calculate the standard deviation of a variable (like we did with the mean)
+x <- c(1,3,5,7,9)
+
+newSD <- function(x) {
+	n <- length(x)
+	SD_val <- sqrt(sum((x-mean(x))^2) / n-1)
+	return(SD_val)
+		}
+
+newSD(x)
+
+WeldingFumes$EXPOSURE_LIM <- as.numeric(WeldingFumes$EXPOSURE_LIMIT)
+newSD(WeldingFumes$EXPOSURE_LIM)
 
 
+
+For each value, find its distance to the mean
+For each value, find the square of this distance
+Find the sum of these squared values
+Divide the sum by the number of values in the data set
+Find the square root of this
 
 #Create and render a quarto document that includes at least:
 	#The table, regression results, and figure, with appropriate captions (1 pt)
