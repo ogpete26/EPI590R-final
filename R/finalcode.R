@@ -3,10 +3,13 @@ library(readxl)
 library(tidyverse)
 library(gtsummary)
 
-#Importing and viewing data set
-WeldingFumes <- read_excel("Data/WeldingFumes_2005.xlsx")
+#Importing and viewing data set using the {here} package
+WeldingFumes <- read_excel(here::here("Data/WeldingFumes_2005.xlsx"))
 View(WeldingFumes)
 
+BigWeldingFumes <- read_excel(here::here("Data", "WeldingFumes_08.02.2024.xlsx"))
+View(BigWeldingFumes)
+warning()
 
 #Create a {gtsummary} table of descriptive statistics about your data (1 pt)
 tbl_summary(

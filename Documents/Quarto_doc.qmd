@@ -32,11 +32,10 @@ tbl_uvregression(
 ## Figure
 Add description
 Cross ref to table
-Save using {here} package
 
 ```{r}
 counts <- table(WeldingFumes$MONTH)
-barplot(counts, main="Samples Collected in 2005 by Month",
+p <- barplot(counts, main="Samples Collected in 2005 by Month",
 				xlab="Month sample was taken",
 				ylab="Frequency of samples taken")
 ```
