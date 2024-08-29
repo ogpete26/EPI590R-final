@@ -1,0 +1,30 @@
+---
+title: "EPI-590R Final"
+author: "Olivia Peterson"
+format: html
+editor: visual
+---
+
+## Table of Descriptive Statistics
+Add description
+
+```{r}
+
+```
+
+## Regression Results
+Add description
+
+```{r}
+
+```
+
+## Figure
+Add description
+
+```{r}
+
+
+```
+
+

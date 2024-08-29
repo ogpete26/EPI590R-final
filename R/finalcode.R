@@ -54,13 +54,6 @@ WeldingFumes$EXPOSURE_LIM <- as.numeric(WeldingFumes$EXPOSURE_LIMIT)
 newSD(WeldingFumes$EXPOSURE_LIM)
 
 
-
-For each value, find its distance to the mean
-For each value, find the square of this distance
-Find the sum of these squared values
-Divide the sum by the number of values in the data set
-Find the square root of this
-
 #Create and render a quarto document that includes at least:
 	#The table, regression results, and figure, with appropriate captions (1 pt)
 	#Inline R code in at least 2 places, 1 pulling a statistic from a table
@@ -71,9 +64,10 @@ Find the square root of this
 
 
 
+
 #Use the {here} package every time you refer to file paths when reading in data
 #and saving any files (1 pt)
-	#You must use it at least twice Feel free to save any files that you create
+	#You must use it at least twice. Feel free to save any files that you create
 	#(e.g., your figure) in your code
 
 
