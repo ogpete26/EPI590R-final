@@ -7,24 +7,40 @@ editor: visual
 
 ## Table of Descriptive Statistics
 Add description
+Inline stat code pulling 1 stat (gtsummary::inline_text())
+Cross ref to figure
 
 ```{r}
-
+tbl_summary(
+	WeldingFumes,
+	include = c(CONTAMINANT_DESC, STATE, MONTH, JOB_CD_DESC, CURRENT_MINE_TYPE))
 ```
 
 ## Regression Results
 Add description
+Inline code printing something like we did with the mean age in the example
 
 ```{r}
-
+tbl_uvregression(
+	WeldingFumes,
+	y = C_OVER_E,
+	include = c(CONTAMINANT_DESC,
+							STATE),
+							method = lm)
 ```
 
 ## Figure
 Add description
+Cross ref to table
+Save using {here} package
 
 ```{r}
-
-
+counts <- table(WeldingFumes$MONTH)
+barplot(counts, main="Samples Collected in 2005 by Month",
+				xlab="Month sample was taken",
+				ylab="Frequency of samples taken")
 ```
 
+## Data explanation
+A brief description of the data, including its source
 
