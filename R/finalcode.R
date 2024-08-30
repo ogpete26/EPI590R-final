@@ -14,7 +14,7 @@ warning()
 #Create a {gtsummary} table of descriptive statistics about your data (1 pt)
 tbl_summary(
 	WeldingFumes,
-	include = c(CONTAMINANT_DESC, STATE, MONTH, JOB_CD_DESC, CURRENT_MINE_TYPE))
+	include = c(CONTAMINANT_DESC, STATE, MONTH, JOB_CD_DESC, MONTH))
 
 
 #Fit a regression and present well-formatted results from the regression (1 pt).

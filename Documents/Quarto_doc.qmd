@@ -5,31 +5,55 @@ format: html
 editor: visual
 ---
 
+```{r reading in libraries and data}
+library(readxl)
+library(tidyverse)
+library(gtsummary)
+
+WeldingFumes <- read_excel(here::here("Data/WeldingFumes_2005.xlsx"))
+View(WeldingFumes)
+
+BigWeldingFumes <- read_excel(here::here("Data", "WeldingFumes_08.02.2024.xlsx"))
+warning()
+```
+
 ## Table of Descriptive Statistics
-Add description
-Inline stat code pulling 1 stat (gtsummary::inline_text())
+
+Add description 
+Inline stat code pulling 1 stat
 Cross ref to figure
 
 ```{r}
+library(gtsummary)
+
 tbl_summary(
 	WeldingFumes,
-	include = c(CONTAMINANT_DESC, STATE, MONTH, JOB_CD_DESC, CURRENT_MINE_TYPE))
+	include = c(CONTAMINANT_DESC, STATE, MONTH, JOB_CD_DESC))
+
+table1 <- tbl_summary(
+  WeldingFumes,
+  by = CURRENT_MINE_STATUS,
+  include = c(MONTH, JOB_CD_DESC, AGE)) |> 
+  add_overall(last = TRUE)
+
+inline_text(table1, variable = "AGE", column = "stat_1")
 ```
 
 ## Regression Results
-Add description
-Inline code printing something like we did with the mean age in the example
+
+Add description Inline code printing something like we did with the mean age in the example
 
 ```{r}
 tbl_uvregression(
 	WeldingFumes,
 	y = C_OVER_E,
 	include = c(CONTAMINANT_DESC,
-							STATE),
+							STATE, MONTH),
 							method = lm)
 ```
 
 ## Figure
+
 Add description
 Cross ref to table
 
@@ -41,5 +65,24 @@ p <- barplot(counts, main="Samples Collected in 2005 by Month",
 ```
 
 ## Data explanation
+
 A brief description of the data, including its source
+
+
+## Standard deviation function
+
+```{r}
+x <- c(1,3,5,7,9)
+
+newSD <- function(x) {
+	n <- length(x)
+	SD_val <- sqrt(sum((x-mean(x))^2) / n-1)
+	return(SD_val)
+		}
+
+newSD(x)
+
+WeldingFumes$EXPOSURE_LIM <- as.numeric(WeldingFumes$EXPOSURE_LIMIT)
+newSD(WeldingFumes$EXPOSURE_LIM)
+```
 
