@@ -5,7 +5,7 @@ format: html
 editor: visual
 ---
 
-```{r reading in libraries and data}
+```{r reading in data, warning=FALSE}
 library(readxl)
 library(tidyverse)
 library(gtsummary)
@@ -16,41 +16,42 @@ library(knitr)
 WeldingFumes <- read_excel(here::here("Data/WeldingFumes_2005.xlsx"))
 
 BigWeldingFumes <- read_excel(here::here("Data", "WeldingFumes_08.02.2024.xlsx"))
-warning()
 ```
 
 ## Table of Descriptive Statistics
 
 ```{r descriptive stat table}
-#| eval:true
 #| label: tbl-one
 #| tbl-cap: "This is a table of descriptive statistics about the job and age of the employees sampled stratified by the mine status"
-
 table1 <- tbl_summary(
   WeldingFumes,
   by = CURRENT_MINE_STATUS,
   include = c(JOB_CD_DESC, AGE, MONTH)) |> 
   add_overall(last = TRUE)
 table1
-
 mean_age <- inline_text(table1, variable = "AGE", column = "stat_0")
+mean_age
 ```
 
-The median and IQR are `r mean_age.` @tbl-one contains a table of descriptive statistics that are partly shown in a figure in @fig-bar.
+@tbl-one contains a table of descriptive statistics partically shown in the figure @fig-bar. The median and IQR for the age of workers sampled is `r mean_age`
 
 ## Regression Results
 
 ```{r regression table}
+#| tbl-cap: "This is a regression table showing statistics for the welding fume elements sampled, as well as the age, month, and state of the employees sampled"
 table2 <- tbl_uvregression(
 	WeldingFumes,
 	y = C_OVER_E,
 	include = c(CONTAMINANT_DESC,
 							STATE, MONTH, AGE),
 							method = lm)
+table2
 
-inline_text(table2, variable = "AGE",
+age_reg <- inline_text(table2, variable = "AGE",
 						pattern = "{estimate} ({conf.low}, {conf.high})")
 ```
+
+The regression statistics for the age of the employees sampled is `r age_reg`
 
 ## Figure
 
@@ -63,7 +64,7 @@ p <- barplot(counts, main="Samples Collected in 2005 by Month",
 				ylab="Frequency of samples taken")
 ```
 
-@fig-bar contains a bar graph of some of the information seen in the table @tbl-one.
+@fig-bar contains a bar graph of some of the information seen in the table @tbl-one. 
 
 ## Data explanation
 
