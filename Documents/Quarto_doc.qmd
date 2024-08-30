@@ -64,7 +64,7 @@ p <- barplot(counts, main="Samples Collected in 2005 by Month",
 				ylab="Frequency of samples taken")
 ```
 
-@fig-bar contains a bar graph of some of the information seen in the table @tbl-one. 
+@fig-bar contains a bar graph of some of the information seen in the table @tbl-one.
 
 ## Data explanation
 
