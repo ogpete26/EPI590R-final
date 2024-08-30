@@ -21,7 +21,7 @@ warning()
 
 ## Table of Descriptive Statistics
 
-```{r}
+```{r descriptive stat table}
 #| eval:true
 #| label: tbl-one
 #| tbl-cap: "This is a table of descriptive statistics about the job and age of the employees sampled stratified by the mine status"
@@ -40,9 +40,7 @@ The median and IQR are `r mean_age.` @tbl-one contains a table of descriptive st
 
 ## Regression Results
 
-Add description Inline code printing something like we did with the mean age in the example
-
-```{r}
+```{r regression table}
 table2 <- tbl_uvregression(
 	WeldingFumes,
 	y = C_OVER_E,
@@ -56,7 +54,7 @@ inline_text(table2, variable = "AGE",
 
 ## Figure
 
-```{r}
+```{r bar chart figure}
 #| label: fig-bar
 #| fig-cap: "This is a bar graph of the samples collected in 2025 by month"
 counts <- table(WeldingFumes$MONTH)
@@ -69,11 +67,11 @@ p <- barplot(counts, main="Samples Collected in 2005 by Month",
 
 ## Data explanation
 
-A brief description of the data, including its source
+This data is from a project I have been working on this summer with the CDC's occupational health branch, NIOSH. We are trying to examine the health effects of welding fumes in those that mine in metal and nonmetal mines. The data is public-use from MSHA and was made by combining Personal Health data from miners and mine information. I decided to only include observations from the year 2005 so that the data was more manageable with 300 observations as opposed to 40,000 in the entire data set.
 
 ## Standard deviation function
 
-```{r}
+```{r new function}
 x <- c(1,3,5,7,9)
 
 newSD <- function(x) {
